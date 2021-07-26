@@ -1,14 +1,14 @@
 package ru.vlabum.simle.rickmorty.data.api
 
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.json.Json
-import okhttp3.MediaType.Companion.toMediaType
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 
-@ExperimentalSerializationApi
+
 object RickAndMortyService {
 
     val client: OkHttpClient
@@ -24,11 +24,15 @@ object RickAndMortyService {
             .addInterceptor(httpLoggingInterceptor)
             .build()
 
+        val moshi = Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
+
         retrofit = Retrofit.Builder()
             .client(client)
             .baseUrl(ApiStrings.BASE_URL)
-            .addConverterFactory(
-                Json { ignoreUnknownKeys = true }.asConverterFactory("application/json".toMediaType()))
+            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
 
         ramService = retrofit.create(RIckAndMortyServiceApi::class.java)

@@ -1,8 +1,10 @@
 package ru.vlabum.simle.rickmorty.data.entity
 
+import com.squareup.moshi.Json
+
 data class Info(
-    val count: Int,
-    val pages: Int,
-    val next: String?,
-    val prev: String?
+    @Json(name = "count") val count: Int,
+    @Json(name = "pages") val pages: Int,
+    @Json(name = "next") val next: String?,
+    @Json(name = "prev") val prev: String?
 )

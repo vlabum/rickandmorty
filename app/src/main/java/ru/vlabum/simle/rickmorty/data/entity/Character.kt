@@ -1,16 +1,18 @@
 package ru.vlabum.simle.rickmorty.data.entity
 
+import com.squareup.moshi.Json
+
 data class Character(
-    val id: Int,
-    val name: String,
-    val status: String,
-    val species: String,
-    val type: String,
-    val gender: String,
-    val origin: Location,
-    val location: Location,
-    val image: String,
-    val episode: List<Episode>,
-    val url: String,
-    val created: String
+    @Json(name = "id") val id: Int,
+    @Json(name = "name") val name: String,
+    @Json(name = "status") val status: String,
+    @Json(name = "species") val species: String,
+    @Json(name = "type") val type: String,
+    @Json(name = "gender") val gender: String,
+    @Json(name = "origin") val origin: Location,
+    @Json(name = "location") val location: Location,
+    @Json(name = "image") val image: String,
+    @Json(name = "episode") val episode: List<Episode>,
+    @Json(name = "url") val url: String,
+    @Json(name = "created") val created: String
 )
