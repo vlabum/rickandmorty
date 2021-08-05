@@ -5,7 +5,7 @@ data class Episode(
     val name: String,
     val airDate: String,
     val episode: String,
-    val characters: List<Character>,
+    val characters: List<CharacterRM>,
     val url: String,
     val created: String
 )

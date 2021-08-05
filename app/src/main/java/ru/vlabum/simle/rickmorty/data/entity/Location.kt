@@ -1,11 +1,13 @@
 package ru.vlabum.simle.rickmorty.data.entity
 
+import com.squareup.moshi.Json
+
 data class Location(
-    val id: Int,
-    val name: String,
-    val type: String,
-    val dimension: String,
-    val residents: List<Character>,
-    val url: String,
-    val created: String
+    @Json(name = "id")          val id: Int?,
+    @Json(name = "name")        val name: String,
+    @Json(name = "type")        val type: String?,
+    @Json(name = "dimension")   val dimension: String?,
+    @Json(name = "residents")   val residents: List<CharacterRM>?,
+    @Json(name = "url")         val url: String,
+    @Json(name = "created")     val created: String?
 )

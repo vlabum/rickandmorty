@@ -9,11 +9,11 @@ import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 
-object RickAndMortyService {
+object RMService {
 
     val client: OkHttpClient
     val retrofit: Retrofit
-    val ramService: RIckAndMortyServiceApi
+    val rmService: RMServiceApi
 
     init {
         val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
@@ -35,7 +35,7 @@ object RickAndMortyService {
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
 
-        ramService = retrofit.create(RIckAndMortyServiceApi::class.java)
+        rmService = retrofit.create(RMServiceApi::class.java)
     }
 
 }
