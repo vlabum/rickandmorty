@@ -9,4 +9,14 @@
         android:name="ru.vlabum.simle.rickmorty.ui.character.CharactersFragment"
         android:label="CharactersFragment" />
 
+    <fragment
+        android:id="@+id/locationsFragment"
+        android:name="ru.vlabum.simle.rickmorty.ui.location.LocationsFragment"
+        android:label="LocationsFragment" />
+
+    <fragment
+        android:id="@+id/episondsFragment"
+        android:name="ru.vlabum.simle.rickmorty.ui.location.EpisodesFragment"
+        android:label="EpisodesFragment" />
+
 </navigation>

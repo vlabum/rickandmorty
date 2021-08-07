@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/charactersFragment"
+        android:icon="@drawable/ic_baseline_people_24"
+        android:title="@string/mi_character" />
+
+    <item
+        android:id="@+id/locationsFragment"
+        android:icon="@drawable/ic_baseline_location_on_24"
+        android:title="@string/mi_locations" />
+
+    <item
+        android:id="@+id/episondsFragment"
+        android:icon="@drawable/ic_baseline_picture_in_picture_24"
+        android:title="@string/mi_episodes" />
+</menu>
