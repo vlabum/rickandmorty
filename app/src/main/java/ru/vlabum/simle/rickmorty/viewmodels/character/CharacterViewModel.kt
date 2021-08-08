@@ -27,7 +27,6 @@ class CharacterViewModel() :
         RMService.rmService.getAllCharacters()
             .map { it ->
                 Log.d("TAG Thread1: ", Thread.currentThread().name)
-                Thread.sleep(5000)
                 it
             }
             .subscribeOn(Schedulers.io())

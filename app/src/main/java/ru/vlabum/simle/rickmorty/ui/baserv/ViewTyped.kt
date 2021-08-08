@@ -5,4 +5,6 @@ interface ViewTyped {
         get() = error("Not implemented $this")
     val uid: Int
         get() = error("Not implemented $this")
+
+    override fun equals(other: Any?): Boolean
 }
