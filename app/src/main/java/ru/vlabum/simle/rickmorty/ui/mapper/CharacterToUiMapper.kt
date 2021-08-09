@@ -18,3 +18,13 @@ class CharacterToUiMapper : (List<CharacterRM>) -> Single<List<ViewTyped>> {
             }.toList()
     }
 }
+
+class CharacterToUiMapper2 : (List<CharacterRM>) -> List<ViewTyped> {
+
+    override fun invoke(characters: List<CharacterRM>): List<ViewTyped> {
+        return characters
+            .map {
+                CharacterUi(it, R.layout.item_character) as ViewTyped
+            }.toList()
+    }
+}

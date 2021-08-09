@@ -9,6 +9,7 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -16,6 +17,8 @@ import com.google.android.material.snackbar.Snackbar
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import ru.vlabum.simle.rickmorty.R
 import ru.vlabum.simle.rickmorty.data.entity.CharacterRM
 import ru.vlabum.simle.rickmorty.ui.RMHolderFactory
@@ -30,7 +33,7 @@ class CharactersFragment : Fragment() {
     private val compositeDisposable = CompositeDisposable()
 
     private val holderFactory: RMHolderFactory = RMHolderFactory()
-    private val adapter: CharacterAdapter<ViewTyped> = CharacterAdapter(holderFactory)
+    private val adapter: CharacterAdapterPager<ViewTyped> = CharacterAdapterPager(holderFactory)
 
     private var navigationView: BottomNavigationView? = null
 
@@ -55,6 +58,12 @@ class CharactersFragment : Fragment() {
         rvCharacters.layoutManager = LinearLayoutManager(view.context, RecyclerView.VERTICAL, false)
         rvCharacters.adapter = adapter
 
+        lifecycleScope.launch {
+            model.flow.collectLatest { pagingData ->
+                adapter.submitData(pagingData)
+            }
+        }
+
         navigationView = activity?.findViewById<BottomNavigationView>(R.id.navigation_view)
     }
 
@@ -73,23 +82,23 @@ class CharactersFragment : Fragment() {
     }
 
     private fun processListCharacters(characters: List<CharacterRM>) {
-        toRV(characters)
+//        toRV(characters)
         characters.forEach {
             Log.d("TAG fragment", it.name)
         }
     }
 
-    private fun toRV(characters: List<CharacterRM>) {
-        val characterToUI = CharacterToUiMapper()
-        val dispose = characterToUI(characters)
-            .subscribeOn(Schedulers.computation())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { uiList -> adapter.items = uiList },
-                { throwable -> showMessage(throwable.message ?: "error without message")}
-            )
-        compositeDisposable.add(dispose)
-    }
+//    private fun toRV(characters: List<CharacterRM>) {
+//        val characterToUI = CharacterToUiMapper()
+//        val dispose = characterToUI(characters)
+//            .subscribeOn(Schedulers.computation())
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribe(
+//                { uiList -> adapter.items = uiList },
+//                { throwable -> showMessage(throwable.message ?: "error without message")}
+//            )
+//        compositeDisposable.add(dispose)
+//    }
 
     private fun showMessage(message: String) {
         (navigationView as? View)?.let {
