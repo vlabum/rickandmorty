@@ -1,7 +1,6 @@
 package ru.vlabum.simle.rickmorty.viewmodels.character
 
-import ru.vlabum.simle.rickmorty.data.entity.CharacterRM
-import ru.vlabum.simle.rickmorty.data.entity.CharactersResp
+import ru.vlabum.simle.rickmorty.repo.data.entity.CharactersResp
 import ru.vlabum.simle.rickmorty.viewmodels.ViewState
 
 sealed class CharacterState : ViewState {

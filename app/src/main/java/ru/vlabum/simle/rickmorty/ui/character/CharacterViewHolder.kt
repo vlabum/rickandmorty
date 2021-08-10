@@ -5,7 +5,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import ru.vlabum.simle.rickmorty.R
-import ru.vlabum.simle.rickmorty.data.entity.CharacterRM
+import ru.vlabum.simle.rickmorty.repo.data.entity.CharacterRM
 import ru.vlabum.simle.rickmorty.ui.baserv.BaseViewHolder
 import ru.vlabum.simle.rickmorty.ui.baserv.ViewTyped
 

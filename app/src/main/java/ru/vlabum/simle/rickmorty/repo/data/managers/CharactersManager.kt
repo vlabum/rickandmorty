@@ -1,4 +1,4 @@
-package ru.vlabum.simle.rickmorty.data.managers
+package ru.vlabum.simle.rickmorty.repo.data.managers
 
 import ru.vlabum.simle.rickmorty.repo.api.ApiStrings
 

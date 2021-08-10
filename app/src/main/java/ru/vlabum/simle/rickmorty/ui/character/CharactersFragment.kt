@@ -8,22 +8,18 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import ru.vlabum.simle.rickmorty.R
-import ru.vlabum.simle.rickmorty.data.entity.CharacterRM
+import ru.vlabum.simle.rickmorty.repo.data.entity.CharacterRM
 import ru.vlabum.simle.rickmorty.ui.RMHolderFactory
 import ru.vlabum.simle.rickmorty.ui.baserv.ViewTyped
-import ru.vlabum.simle.rickmorty.ui.mapper.CharacterToUiMapper
 import ru.vlabum.simle.rickmorty.viewmodels.character.CharacterState
 import ru.vlabum.simle.rickmorty.viewmodels.character.CharacterViewModel
 
@@ -58,18 +54,16 @@ class CharactersFragment : Fragment() {
         rvCharacters.layoutManager = LinearLayoutManager(view.context, RecyclerView.VERTICAL, false)
         rvCharacters.adapter = adapter
 
-        lifecycleScope.launch {
-            model.flow.collectLatest { pagingData ->
-                adapter.submitData(pagingData)
-            }
-        }
+        compositeDisposable.add(model.getCharacters().subscribe {
+            adapter.submitData(lifecycle, it)
+        })
 
         navigationView = activity?.findViewById<BottomNavigationView>(R.id.navigation_view)
     }
 
-    override fun onStop() {
+    override fun onDestroyView() {
         compositeDisposable.clear()
-        super.onStop()
+        super.onDestroyView()
     }
 
     private fun render(state: CharacterState) {

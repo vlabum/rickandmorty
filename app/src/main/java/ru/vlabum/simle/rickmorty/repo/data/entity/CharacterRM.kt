@@ -1,4 +1,4 @@
-package ru.vlabum.simle.rickmorty.data.entity
+package ru.vlabum.simle.rickmorty.repo.data.entity
 
 import com.squareup.moshi.Json
 

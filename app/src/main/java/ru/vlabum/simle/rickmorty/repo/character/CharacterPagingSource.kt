@@ -2,16 +2,11 @@ package ru.vlabum.simle.rickmorty.repo.character
 
 import androidx.paging.PagingState
 import androidx.paging.rxjava3.RxPagingSource
-import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
-import ru.vlabum.simle.rickmorty.data.entity.CharacterRM
-import ru.vlabum.simle.rickmorty.data.entity.CharactersResp
 import ru.vlabum.simle.rickmorty.repo.api.RMService
 import ru.vlabum.simle.rickmorty.ui.baserv.ViewTyped
-import ru.vlabum.simle.rickmorty.ui.mapper.CharacterToUiMapper
 import ru.vlabum.simle.rickmorty.ui.mapper.CharacterToUiMapper2
-import java.lang.Exception
 
 class CharacterPagingSource : RxPagingSource<Int, ViewTyped>() {
 

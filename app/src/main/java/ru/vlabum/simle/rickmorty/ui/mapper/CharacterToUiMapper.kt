@@ -2,9 +2,8 @@ package ru.vlabum.simle.rickmorty.ui.mapper
 
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.schedulers.Schedulers
 import ru.vlabum.simle.rickmorty.R
-import ru.vlabum.simle.rickmorty.data.entity.CharacterRM
+import ru.vlabum.simle.rickmorty.repo.data.entity.CharacterRM
 import ru.vlabum.simle.rickmorty.ui.baserv.ViewTyped
 import ru.vlabum.simle.rickmorty.ui.character.CharacterUi
 

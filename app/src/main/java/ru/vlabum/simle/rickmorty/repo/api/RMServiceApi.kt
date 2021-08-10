@@ -6,8 +6,8 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 import retrofit2.http.QueryMap
-import ru.vlabum.simle.rickmorty.data.entity.CharacterRM
-import ru.vlabum.simle.rickmorty.data.entity.CharactersResp
+import ru.vlabum.simle.rickmorty.repo.data.entity.CharacterRM
+import ru.vlabum.simle.rickmorty.repo.data.entity.CharactersResp
 
 interface RMServiceApi {
 
